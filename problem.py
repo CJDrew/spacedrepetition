@@ -19,4 +19,4 @@ class problem:
     
     def isDue(self) -> bool:
         nextDueDate = self.addedDate + datetime.timedelta(days=self.schedule[self.repNum+1]) 
-        return self.lastDoneDate < nextDueDate and datetime.datetime.now >= nextDueDate
+        return self.lastDoneDate < nextDueDate and datetime.datetime.now() >= nextDueDate

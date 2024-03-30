@@ -23,6 +23,7 @@ def addProblem(id):
     else:
         print(f"added problem {id} to the list")
         problems[id] = problem(id)
+    pickle.dump(problems, open("problems.pickle", "wb"))
 
 #Listen in the console
 while True:
