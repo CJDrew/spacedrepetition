@@ -15,11 +15,19 @@ def getProblems():
         if p.isDue():
             print(p.id)
 
+def showAllProblems():
+    for key in problems:
+        print(f"Problem: {key} Reps Done: {problems[key].repNum}")
+
 def addProblem(id):
     if id in problems:
-        print(f"completed repitition {id.repNum} for problem {id}")
-        problems[id].repNum += 1
-        problems[id].lastDoneDate = datetime.now()
+        p = problems[id]
+        print(f"completed repitition {p.repNum} for problem {id}")
+        p.repNum += 1
+        p.lastDoneDate = datetime.now()
+        if p.isDone():
+            del problems[id]
+            print(f"Problem {id} is done! Good Job!!")
     else:
         print(f"added problem {id} to the list")
         problems[id] = problem(id)
@@ -34,7 +42,9 @@ while True:
     
     elif command == "get":
         getProblems()
-    
+
+    elif command == "show":
+        showAllProblems()
     else:
         if not command.isnumeric():
             print("Enter just a problem number")

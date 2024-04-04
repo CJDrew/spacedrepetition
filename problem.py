@@ -13,10 +13,15 @@ class problem:
 
     def __init__(self, id):
         self.id = id
-        self.repNum = 0
+        self.repNum = 1
         self.addedDate = datetime.datetime.now()
         self.lastDoneDate = datetime.datetime.now()
     
     def isDue(self) -> bool:
-        nextDueDate = self.addedDate + datetime.timedelta(days=self.schedule[self.repNum+1]) 
+        if self.isDone():
+            raise Exception("End of schedule")
+        nextDueDate = self.addedDate + datetime.timedelta(days=self.schedule[self.repNum]) 
         return self.lastDoneDate < nextDueDate and datetime.datetime.now() >= nextDueDate
+    48
+    def isDone(self) -> bool:
+        return self.repNum > len(self.schedule)
