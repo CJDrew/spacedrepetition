@@ -22,6 +22,10 @@ class problem:
             raise Exception("End of schedule")
         nextDueDate = self.addedDate + datetime.timedelta(days=self.schedule[self.repNum]) 
         return self.lastDoneDate < nextDueDate and datetime.datetime.now() >= nextDueDate
-    48
+
     def isDone(self) -> bool:
         return self.repNum > len(self.schedule)
+
+    def addRepetition(self) -> None:
+        self.repNum += 1
+        self.lastDoneDate = datetime.datetime.now()

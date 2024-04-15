@@ -22,9 +22,8 @@ def showAllProblems():
 def addProblem(id):
     if id in problems:
         p = problems[id]
+        p.addRepetition()
         print(f"completed repitition {p.repNum} for problem {id}")
-        p.repNum += 1
-        p.lastDoneDate = datetime.now()
         if p.isDone():
             del problems[id]
             print(f"Problem {id} is done! Good Job!!")
